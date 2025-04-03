@@ -6,9 +6,11 @@ class Solution:
         while i >= 0 or j >= 0:
             if j < 0:
                 ans = str(int(num1[:i+1]) + add) + ans
+                add = 0
                 break
             if i < 0:
                 ans = str(int(num2[:j+1]) + add) + ans
+                add = 0
                 break
             x = int(num1[i]) + int(num2[j]) + add
             if x >= 10:
@@ -18,4 +20,6 @@ class Solution:
                 ans = str(x) + ans
             i -= 1
             j -= 1
+        if add == 1:
+            ans = "1" + ans
         return ans
