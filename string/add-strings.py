@@ -18,6 +18,7 @@ class Solution:
                 ans = str(x - 10) + ans
             else:
                 ans = str(x) + ans
+                add = 0
             i -= 1
             j -= 1
         if add == 1:
