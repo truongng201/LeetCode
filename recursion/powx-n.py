@@ -9,4 +9,4 @@ class Solution:
             a *= a
             a *= x ** remain
             return a
-        return round(new_pow(x, n), 4)
+        return round(new_pow(x, n), 5)
