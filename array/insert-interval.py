@@ -1,10 +1,11 @@
 class Solution:
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        if len(intervals) == 0:
+            return [newInterval]
         ans = []
         for idx, item in enumerate(intervals):
             if newInterval[0] >= item[0] and newInterval[0] <= item[1]:
                 new_item = [item[0], max(item[1], newInterval[1])]
-                print(new_item)
                 ans.append(new_item)
                 idx += 1
                 while ans and intervals[idx][0] <= ans[-1][1]:
