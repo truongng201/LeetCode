@@ -3,34 +3,25 @@ class Solution:
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
         if len(intervals) == 0:
             return [newInterval]
-        def isOverlap(item1, item2):
-            start1, end1 = item1
-            start2, end2 = item2
-            if end1 < start2 or end2 < start1:
-                return False
-            return True
-        ans = []
-        isSet = False
-        for idx, item in enumerate(intervals):
-            if isOverlap(newInterval, item):
-                start, end = newInterval
-                isSet = True
-                ans.append([min(start, item[0]), max(end, item[1])])
-                idx += 1
-                break
-            else:
-                ans.append(item)
+        
+        arr = []
+        start, end = newInterval
+        idx = 0
         while idx < len(intervals):
-            if ans and isOverlap(ans[-1], intervals[idx]):
-                new_item = [min(ans[-1][0], intervals[idx][0]), max(ans[-1][1], intervals[idx][1])]
+            if intervals[idx][0] >= start:
+                intervals.insert(idx, newInterval)
+                arr += intervals[idx:]
+                break
+            arr.append(intervals[idx])
+            idx += 1
+        else:
+            arr.append(newInterval)
+        ans = [arr[0]]
+        for i in range(1, len(arr)):
+            if ans[-1][1] >= arr[i][0]:
+                new_item = [ans[-1][0], max(arr[i][1], ans[-1][1])]
                 ans.pop()
                 ans.append(new_item)
             else:
-                ans.append(intervals[idx])
-            idx += 1
-        if not isSet:
-            if ans[0][0] > newInterval[1]:
-                ans.insert(0, newInterval)
-            else:
-                ans.append(newInterval)
+                ans.append(arr[i])
         return ans
