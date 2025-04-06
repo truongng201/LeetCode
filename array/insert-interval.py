@@ -14,7 +14,8 @@ class Solution:
                     ans.append(new_item)
                     idx += 1
                 ans += intervals[idx:]
-                break
+                return ans
             else:
                 ans.append(item)
+        ans.append(newInterval)
         return ans
