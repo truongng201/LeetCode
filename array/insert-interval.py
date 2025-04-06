@@ -3,6 +3,11 @@ class Solution:
         if len(intervals) == 0:
             return [newInterval]
         ans = []
+        if intervals[0][0] > newInterval[0]:
+            ans.append([min(intervals[0][0], newInterval[0]), max(intervals[0][1], newInterval[1])])
+            if len(intervals) > 1:
+                ans += intervals[1:]
+            return ans
         for idx, item in enumerate(intervals):
             if newInterval[0] >= item[0] and newInterval[0] <= item[1]:
                 new_item = [item[0], max(item[1], newInterval[1])]
