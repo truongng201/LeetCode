@@ -29,5 +29,8 @@ class Solution:
                 ans.append(intervals[idx])
             idx += 1
         if not isSet:
-            ans.append(newInterval)
+            if ans[0][0] > newInterval[1]:
+                ans.insert(0, newInterval)
+            else:
+                ans.append(newInterval)
         return ans
