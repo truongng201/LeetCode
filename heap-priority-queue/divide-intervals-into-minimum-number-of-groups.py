@@ -4,9 +4,10 @@ class Solution:
         intervals.sort(key=lambda x:x[0])
         pq = []
         ans = 0
+        print(intervals)
         for item in intervals:
             start, finish = item
-            if pq and pq[0][0] < finish: 
+            if pq and pq[0][0] < start: 
                 ans -= 1
                 heapq.heappop(pq)
             heapq.heappush(pq, (finish, start))
