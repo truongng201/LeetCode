@@ -1,12 +1,12 @@
 class Solution:
     def countDays(self, days: int, meetings: List[List[int]]) -> int:
-        meet = [False] * (days + 1)
-        print(meet)
-        for meeting in meetings:
-            for i in range(meeting[0], meeting[1] + 1):
-                meet[i] = True
         cnt = 0
-        for i in range(1, days + 1):
-            if not meet[i]:
-                cnt += 1
+        meetings.sort(key=lambda x:x[0])
+        curr = meetings[0]
+        for i in range(1, len(meetings)):
+            if meetings[i][0] > curr[1]:
+                cnt += meetings[i][0] - curr[1] - 1
+            curr = meetings[i]
+        if curr[1] < days:
+            cnt += days - curr[1]
         return cnt
