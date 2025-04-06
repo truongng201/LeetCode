@@ -22,8 +22,13 @@ class Solution:
                 return []
             return [max(f1, f2), min(s1, s2)]
         ans = []
+        print(combine)
+        curr_check = combine[0]
         for i in range(1, len(combine)):
-            x = get_overlap(combine[i], combine[i-1])
+            x = get_overlap(combine[i], curr_check)
             if len(x) != 0:
                 ans.append(x)
+            if combine[i][1] > curr_check[1]:
+                curr_check = combine[i]
+            
         return ans
