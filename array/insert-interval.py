@@ -8,7 +8,7 @@ class Solution:
                 new_item = [item[0], max(item[1], newInterval[1])]
                 ans.append(new_item)
                 idx += 1
-                while ans and intervals[idx][0] <= ans[-1][1]:
+                while ans and idx < len(intervals) and intervals[idx][0] <= ans[-1][1]:
                     new_item = [ans[-1][0], max(ans[-1][1], intervals[idx][1])]
                     ans.pop()
                     ans.append(new_item)
