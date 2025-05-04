@@ -9,7 +9,7 @@ class Solution:
         for i in range(len(nums) + 1):
             dp[i][0] = True
         
-        for i in range(len(nums) + 1):
+        for i in range(1, len(nums) + 1):
             for j in range(1, total + 1):
                 if j < nums[i - 1]:
                     dp[i][j] = dp[i - 1][j]
